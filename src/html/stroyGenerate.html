@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4コマ漫画ジェネレーター</title>
+    <link rel="stylesheet" href="../css/styles.css" />   
+    <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+         .container2 {
+            background-color: #ffe8e8; /* 明るいピンク */
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            /* width: 300px; */
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .input-group textarea, .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .slides {
+            display: none;
+        }
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            border: 2px solid #ccc;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            font-size: 20px;
+        }
+        .slide.active {
+            display: block;
+        }
+        .button-group {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #ddd;
+        }
+        .button-group button:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<div class="container2">
+    <h1>4コマ漫画ジェネレーター</h1>
+
+    <div class="input-group">
+        <label for="characterName">キャラクターの名前:</label>
+        <input type="text" id="characterName" placeholder="キャラクターの名前を入力">
+    </div>
+
+    <div class="input-group">
+        <label for="ki">起承転結を入力:</label>
+        <textarea id="ki" rows="3" placeholder="起を入力"></textarea>
+        <textarea id="sho" rows="3" placeholder="承を入力"></textarea>
+        <textarea id="ten" rows="3" placeholder="転を入力"></textarea>
+        <textarea id="ketsu" rows="3" placeholder="結を入力"></textarea>
+    </div>
+
+    <div class="button-group">
+        <button onclick="generateStory()">ストーリー生成</button>
+        <button onclick="generate4koma()">4コマ漫画を表示</button>
+    </div>
+
+    <div class="slides" id="slides">
+        <div class="slide" id="slide1"></div>
+        <div class="slide" id="slide2"></div>
+        <div class="slide" id="slide3"></div>
+        <div class="slide" id="slide4"></div>
+    </div>
+
+    <div class="button-group" id="navButtons" style="display:none;">
+        <button onclick="showSlide(0)">1コマ目</button>
+        <button onclick="showSlide(1)">2コマ目</button>
+        <button onclick="showSlide(2)">3コマ目</button>
+        <button onclick="showSlide(3)">4コマ目</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+
+    function generate4koma() {
+        const name = document.getElementById('characterName').value;
+        const ki = document.getElementById('ki').value;
+        const sho = document.getElementById('sho').value;
+        const ten = document.getElementById('ten').value;
+        const ketsu = document.getElementById('ketsu').value;
+
+        resultText = "以下の起承転結のストーリーで4コマ漫画を生成してください。\r\n・起：" + ki
+            + "\r\n・承：" + sho + "\r\n・転：" + ten + "\r\n・結：" + ketsu;
+
+        if (name && ki && sho && ten && ketsu) {
+            $.ajax({
+              type: "POST",
+              url: "https://ishinomakihack2024.azurewebsites.net/api/CreateImage", // 指定されたターゲットURL
+              contentType: "application/json",
+              data: JSON.stringify({ message: resultText }), // resultTextの内容を送信
+              dataType: "json",
+            })
+              .done(function (response) {
+                console.log("Success:", response);
+
+                if (response.status) {
+                  // 返ってきたBase64エンコードされた画像データを取得
+                  const base64Image = 'data:image/png;base64,' + response.base64Image;
+                  
+                  const imgElement = $('<img>', {
+                    src: base64Image, // 画像のURLを指定
+                    alt: '画像の説明'
+                  });
+
+                  // テキストエリアタグのsrc属性に画像データをセット
+                  // imgタグのsrc属性に画像データをセット
+                  $('#slide1').append(imgElement);
+
+                  document.getElementById('slides').style.display = 'block';
+                  document.getElementById('navButtons').style.display = 'block';
+
+                  showSlide(0);
+                } else {
+                  console.error("Error: No image data found");
+                }
+              })
+              .fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+              });
+            //document.getElementById('slide1').innerText = name + "の冒険: " + ki;
+            //document.getElementById('slide2').innerText = sho;
+            //document.getElementById('slide3').innerText = ten;
+            //document.getElementById('slide4').innerText = ketsu;
+
+            
+        } else {
+            alert("すべてのフィールドに入力してください。");
+        }
+    }
+    
+    function generateStory() {
+        const name = document.getElementById('characterName').value;
+        const resultText = name + "というかわいいキャラクターの起承転結のストーリーを生成してください。"
+        if (name) {
+            // resultText を使ってPOSTリクエストを送信
+            $.ajax({
+              type: "POST",
+              url: "https://ishinomakihack2024.azurewebsites.net/api/Completions", // 指定されたターゲットURL
+              contentType: "application/json",
+              data: JSON.stringify({ message: resultText }), // resultTextの内容を送信
+              dataType: "json",
+            })
+              .done(function (response) {
+                console.log("Success:", response);
+
+                if (response.status) {
+                  var jsonObject = JSON.parse(response.message);
+
+                  // テキストエリアタグにセット
+                  $("#ki").val(jsonObject.stories[0].story.replace(/"/g, ''));
+                  $("#sho").val(jsonObject.stories[1].story.replace(/"/g, ''));
+                  $("#ten").val(jsonObject.stories[2].story.replace(/"/g, ''));
+                  $("#ketsu").val(jsonObject.stories[3].story.replace(/"/g, ''));
+                } else {
+                  console.error("Error: No image data found");
+                }
+              })
+              .fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+              });
+        } else {
+            alert("名前を入力してください。");
+        }
+    }
+
+    function showSlide(index) {
+        const slides = document.getElementsByClassName('slide');
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
+        slides[index].classList.add('active');
+    }
+</script>
+
+</body>
+</html>
