@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
+    <div class="img_left">
+      <img src="..\images\img_01_reimu.gif">
+    </div>
     <div class="loading">
       <div class="spinner"></div>
       <p>処理中...少々お待ちください。</p>
+    </div>
+    <div class="img_right">
+      <img src="..\images\img_02_marisa.gif">
     </div>
 
     <script>
@@ -23,9 +29,9 @@
       const softness = urlParams.get("softness");
 
       // 2秒後に結果ページに遷移
-      setTimeout(() => {
-        window.location.href = `result.html?strength=${strength}&agility=${agility}&intelligence=${intelligence}&age=${age}&size=${size}&softness=${softness}`;
-      }, 2000);
+//      setTimeout(() => {
+//        window.location.href = `result.html?strength=${strength}&agility=${agility}&intelligence=${intelligence}&age=${age}&size=${size}&softness=${softness}`;
+//      }, 20000);
     </script>
   </body>
 </html>
