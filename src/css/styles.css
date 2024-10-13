@@ -5,8 +5,8 @@ body {
    font-style: normal;
    /*background-image: linear-gradient(0deg, #ffd8de, rgb(222, 216, 255));
    background-color: #ffebee;  柔らかいピンク */
-   background-image: url('/hacksson/src/css/images/背景.gif');
-   background-image: no-repeat; /*배경 이미지 반복 안 함 */
+   background: url('/images/back.png') no-repeat center center fixed; /* 背景画像を設定 */
+   background-size: cover;
    background-size: 100% 100%;
    margin: 0;
    padding: 0;
