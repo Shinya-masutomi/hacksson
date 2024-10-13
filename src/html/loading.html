@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ローディング</title>
-  <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-  <div class="loading">
-    <div class="spinner"></div>
-    <p>処理中...少々お待ちください。</p>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ローディング</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>処理中...少々お待ちください。</p>
+    </div>
 
-  <script>
-    // URLのパラメータを取得
-    const urlParams = new URLSearchParams(window.location.search);
-    const strength = urlParams.get('strength');
-    const agility = urlParams.get('agility');
-    const intelligence = urlParams.get('intelligence');
+    <script>
+      // URLのパラメータを取得
+      const urlParams = new URLSearchParams(window.location.search);
+      const strength = urlParams.get("strength");
+      const agility = urlParams.get("agility");
+      const intelligence = urlParams.get("intelligence");
+      const age = urlParams.get("age");
+      const size = urlParams.get("size");
+      const softness = urlParams.get("softness");
 
-    // 2秒後に結果ページに遷移
-    setTimeout(() => {
-      window.location.href = `result.html?strength=${strength}&agility=${agility}&intelligence=${intelligence}`;
-    }, 2000);
-  </script>
-</body>
+      // 2秒後に結果ページに遷移
+      setTimeout(() => {
+        window.location.href = `result.html?strength=${strength}&agility=${agility}&intelligence=${intelligence}&age=${age}&size=${size}&softness=${softness}`;
+      }, 2000);
+    </script>
+  </body>
 </html>
