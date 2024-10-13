@@ -9,7 +9,12 @@
   <body>
     <div class="container">
       <h1>結果</h1>
-      <p id="character-stats"></p>
+      <p id="character-stats-strength"></p>
+      <p id="character-stats-agility"></p>
+      <p id="character-stats-intelligence"></p>
+      <p id="character-stats-age"></p>
+      <p id="character-stats-size"></p>
+      <p id="character-stats-softness"></p>
       <img
         id="character-image"
         src="https://via.placeholder.com/150"
@@ -32,8 +37,18 @@
       const softness = urlParams.get("softness");
 
       // 結果を表示
-      const resultText = `攻撃力: ${strength}, 敏捷性: ${agility}, 知性: ${intelligence}, 年齢: ${age}, 大きさ: ${size}, 柔らかさ: ${softness}`;
-      document.getElementById("character-stats").textContent = resultText;
+      const resultIntelligence = `知性: ${intelligence}`;
+      const resultStrength = `攻撃力: ${strength}`; 
+      const resultAge = `年齢: ${age}`; 
+      const resultSize = `大きさ: ${size}`;
+      const resultSoftness = `柔らかさ: ${softness}`;
+      const resultAgility = `敏捷性: ${agility}`;
+      document.getElementById("character-stats-strength").textContent = resultStrength;
+      document.getElementById("character-stats-agility").textContent = resultAgility;
+      document.getElementById("character-stats-intelligence").textContent = resultIntelligence;
+      document.getElementById("character-stats-age").textContent = resultAge;
+      document.getElementById("character-stats-size").textContent = resultSize;
+      document.getElementById("character-stats-softness").textContent = resultSoftness;
 
       // 戻るボタンの処理
       function goBack() {
