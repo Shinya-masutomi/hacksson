@@ -151,3 +151,7 @@ label {
 .back-btn:hover {
   background-color: #ec407a; /* より濃いピンク */
 }
+
+#story {
+  text-align: left;
+}
