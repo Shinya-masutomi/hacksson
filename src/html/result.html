@@ -1,37 +1,72 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>結果</title>
-  <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-  <div class="container">
-    <h1>結果</h1>
-    <p id="character-stats"></p>
-    <img id="character-image" src="" alt="キャラクター画像" class="character-image">
-    <button onclick="goBack()" class="back-btn">戻る</button>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>結果</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>結果</h1>
+      <p id="character-stats"></p>
+      <img
+        id="character-image"
+        src="https://via.placeholder.com/150"
+        alt="キャラクター画像"
+        class="character-image"
+      />
+      <button onclick="goBack()" class="back-btn">戻る</button>
+    </div>
 
-  <script>
-    // URLのパラメータからデータを取得
-    const urlParams = new URLSearchParams(window.location.search);
-    const strength = urlParams.get('strength');
-    const agility = urlParams.get('agility');
-    const intelligence = urlParams.get('intelligence');
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    // 結果を表示
-    const resultText = `強さ: ${strength}, 敏捷性: ${agility}, 知性: ${intelligence}`;
-    document.getElementById("character-stats").textContent = resultText;
+    <script>
+      // URLのパラメータからデータを取得
+      const urlParams = new URLSearchParams(window.location.search);
+      const strength = urlParams.get("strength");
+      const agility = urlParams.get("agility");
+      const intelligence = urlParams.get("intelligence");
+      const age = urlParams.get("age");
+      const size = urlParams.get("size");
+      const softness = urlParams.get("softness");
 
-    // キャラクター画像表示
-    document.getElementById("character-image").src = "https://via.placeholder.com/150";
+      // 結果を表示
+      const resultText = `攻撃力: ${strength}, 敏捷性: ${agility}, 知性: ${intelligence}, 年齢: ${age}, 大きさ: ${size}, 柔らかさ: ${softness}`;
+      document.getElementById("character-stats").textContent = resultText;
 
-    // 戻るボタンの処理
-    function goBack() {
-      window.history.go(-2); // 2つ前のページに戻る
-    }
-  </script>
-</body>
+      // 戻るボタンの処理
+      function goBack() {
+        window.history.go(-2); // 2つ前のページに戻る
+      }
+
+      // resultText を使ってPOSTリクエストを送信
+      $.ajax({
+        type: "POST",
+        url: "https://ishinomakihack2024.azurewebsites.net/api/CreateImage", // 指定されたターゲットURL
+        contentType: "application/json",
+        data: JSON.stringify({ message: resultText }), // resultTextの内容を送信
+        dataType: "json",
+      })
+        .done(function (response) {
+          console.log("Success:", response);
+
+          if (response.status) {
+            // 返ってきたBase64エンコードされた画像データを取得
+            const base64Image = response.base64Image;
+
+            // imgタグのsrc属性に画像データをセット
+            $("#character-image").attr(
+              "src",
+              `data:image/png;base64,${base64Image}`
+            );
+          } else {
+            console.error("Error: No image data found");
+          }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          console.error("Error:", textStatus, errorThrown);
+        });
+    </script>
+  </body>
 </html>
