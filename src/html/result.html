@@ -7,17 +7,26 @@
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="container -ex">
       <h1>結果</h1>
-      <p id="character-stats" style="display: none;"></p>
-      <canvas id="myChart"></canvas>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>      <img
-        id="character-image"
-        src="https://via.placeholder.com/150"
-        alt="キャラクター画像"
-        class="character-image"
-      />
+      <div class="yoko">
+        <p id="character-stats" style="display: none"></p>
+        <canvas id="myChart"></canvas>
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"
+        ></script>
+        <img
+          id="character-image"
+          src="https://via.placeholder.com/150"
+          alt="キャラクター画像"
+          class="character-image"
+        />
+      </div>
       <a href="story.html"><button class="back-btn">物語へ</button></a>
     </div>
 
@@ -36,44 +45,46 @@
       //チャートを生成
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
-        type: 'radar',
+        type: "radar",
         data: {
           labels: ["攻撃力", "俊敏性", "知性", "年齢", "大きさ", "柔らかさ"],
-          datasets: [{
-            label: "パラメータ",
-            data: [strength, agility, intelligence, age, size, softness],
-            backgroundColor: "rgba(236, 64, 122, 0.5)",  //グラフ背景色
-            borderColor: "rgba(236, 64, 122, 1)",        //グラフボーダー色
-          }]
+          datasets: [
+            {
+              label: "パラメータ",
+              data: [strength, agility, intelligence, age, size, softness],
+              backgroundColor: "rgba(236, 64, 122, 0.5)", //グラフ背景色
+              borderColor: "rgba(236, 64, 122, 1)", //グラフボーダー色
+            },
+          ],
         },
         options: {
           maintainAspectRatio: true,
           scales: {
             r: {
-              max: 100,        // グラフの最大値
-              min: 0,        // グラフの最小値
+              max: 100, // グラフの最大値
+              min: 0, // グラフの最小値
               ticks: {
-                stepSize: 20,  // 目盛間隔
-                display: false  // メモリのラベルを非表示にする
-              }
-            }
+                stepSize: 20, // 目盛間隔
+                display: false, // メモリのラベルを非表示にする
+              },
+            },
           },
           plugins: {
-              legend: {
-                display: false  // 凡例を非表示にする
+            legend: {
+              display: false, // 凡例を非表示にする
+            },
+            datalabels: {
+              color: "black", // ラベルの色
+              anchor: "end", // ラベルの配置
+              align: "start", // ラベルの配置
+              offset: -20, // ラベルの配置
+              formatter: function (value) {
+                return value; // データの値を表示
               },
-              datalabels: {
-              color: 'black',            // ラベルの色
-              anchor: 'end',             // ラベルの配置
-              align: 'start',            // ラベルの配置
-              offset: -20,                // ラベルの配置
-              formatter: function(value) {
-                return value;            // データの値を表示
-              }
-            }
-          }
+            },
+          },
         },
-        plugins: [ChartDataLabels]  // プラグインを有効化
+        plugins: [ChartDataLabels], // プラグインを有効化
       });
 
       // 結果を表示

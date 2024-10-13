@@ -22,7 +22,8 @@ body {
    border-radius: 15px;
    padding: 30px;
    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-   width: 300px;
+   width: 400px;
+   height: 80vh;
    text-align: center;
  }
  
@@ -102,6 +103,8 @@ label {
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 18px;
+  display: inline-block;
+  margin: 2em auto;
 }
 
 .submit-btn:hover {
@@ -142,12 +145,12 @@ label {
 }
 
 .character-image {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   margin: 20px 0;
 }
 
-.back-btn {
+.story-btn {
   background-color: #f06292; /* 明るいピンク */
   color: white;
   border: none;
@@ -158,12 +161,12 @@ label {
   font-size: 18px;
 }
 
-.back-btn:hover {
+.story-btn:hover {
   background-color: #ec407a; /* より濃いピンク */
 }
 
 #story {
-  text-align: left;
+  text-align: center;
 }
 
 #character-image{
