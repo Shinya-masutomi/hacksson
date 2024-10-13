@@ -5,7 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url('/images/back.png') no-repeat center center fixed; /* 背景画像を設定 */
+  background: url('../images/back.png') no-repeat center center fixed; /* 背景画像を設定 */
   background-size: cover;
   position: relative; /* 相対位置を設定 */
 }
