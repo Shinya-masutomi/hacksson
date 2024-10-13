@@ -90,6 +90,7 @@
       const affection = urlParams.get("affection"); // 年齢を愛情に変更
       const size = urlParams.get("size");
       const softness = urlParams.get("softness");
+      const message = urlParams.get("message");
 
       // チャートを生成
       var ctx = document.getElementById("myChart");
@@ -148,7 +149,9 @@
       });
 
       // 結果を表示
-      const resultText = `次のパラメータに基づいて日本風のかわいいキャラクターを生成してください: 運: ${luck}、敏捷性: ${agility}、知性: ${intelligence}、愛情: ${affection}、体格: ${size}、柔らかさ: ${softness}。ただし、これらのパラメータの数値や文字を表示しないでください。`; // 結果表示を更新
+      //const resultText = `次のパラメータに基づいて日本風のかわいいキャラクターを生成してください: 運: ${luck}、敏捷性: ${agility}、知性: ${intelligence}、愛情: ${affection}、体格: ${size}、柔らかさ: ${softness}。ただし、これらのパラメータの数値や文字を表示しないでください。`; // 結果表示を更新
+      const resultText = "次のメッセージのような日本風のかわいく、ゆらキャラのようなキャラクターを生成して下さい。\r\n・"
+         + message;
       //console.log(resultText);
       document.getElementById("character-stats").textContent = resultText;
 

@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <div class="img_left">
@@ -25,20 +26,6 @@
       <img src="../images/img_02_marisa.gif" alt="Marisa" />
     </div>
 
-    <script>
-      // URLのパラメータを取得
-      const urlParams = new URLSearchParams(window.location.search);
-      const luck = urlParams.get("luck"); // 攻撃力を運に変更
-      const agility = urlParams.get("agility");
-      const intelligence = urlParams.get("intelligence");
-      const affection = urlParams.get("affection"); // 年齢を愛情に変更
-      const size = urlParams.get("size");
-      const softness = urlParams.get("softness");
-
-      // 2秒後に結果ページに遷移
-      setTimeout(() => {
-        window.location.href = `result.html?luck=${luck}&agility=${agility}&intelligence=${intelligence}&affection=${affection}&size=${size}&softness=${softness}`; // URLパラメータ名を変更
-      }, 2000);
-    </script>
+    <script src="../javascript/loading.js"></script>
   </body>
 </html>
