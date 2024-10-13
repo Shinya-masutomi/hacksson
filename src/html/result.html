@@ -12,12 +12,14 @@
       <p id="character-stats"></p>
       <img
         id="character-image"
-        src=""
+        src="https://via.placeholder.com/150"
         alt="キャラクター画像"
         class="character-image"
       />
       <button onclick="goBack()" class="back-btn">戻る</button>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
       // URLのパラメータからデータを取得
@@ -33,14 +35,31 @@
       const resultText = `攻撃力: ${strength}, 敏捷性: ${agility}, 知性: ${intelligence}, 年齢: ${age}, 大きさ: ${size}, 柔らかさ: ${softness}`;
       document.getElementById("character-stats").textContent = resultText;
 
-      // キャラクター画像表示 (仮の画像URLを使用)
-      document.getElementById("character-image").src =
-        "https://via.placeholder.com/150";
-
       // 戻るボタンの処理
       function goBack() {
         window.history.go(-2); // 2つ前のページに戻る
       }
+
+      // resultText を使ってPOSTリクエストを送信
+      $.ajax({
+        type: "POST",
+        url: "https://ishinomakihack2024.azurewebsites.net/api/CreateImage", // 対象のEndpointを指定
+        contentType: "application/json",
+        data: JSON.stringify({ message: resultText }), // resultTextをJSON形式で送信
+        dataType: "json",
+      })
+        .done(function (response) {
+          // 成功時の処理
+          console.log("Success:", response);
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          // 失敗時の処理
+          console.error("Error:", textStatus, errorThrown);
+        })
+        .always(function (jqXHR, textStatus) {
+          // 常に最後に実行する処理
+          console.log("Request completed:", textStatus);
+        });
     </script>
   </body>
 </html>
