@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>結果</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>結果</h1>
+    <p id="character-stats"></p>
+    <img id="character-image" src="" alt="キャラクター画像" class="character-image">
+    <button onclick="goBack()" class="back-btn">戻る</button>
+  </div>
+
+  <script>
+    // URLのパラメータからデータを取得
+    const urlParams = new URLSearchParams(window.location.search);
+    const strength = urlParams.get('strength');
+    const agility = urlParams.get('agility');
+    const intelligence = urlParams.get('intelligence');
+
+    // 結果を表示
+    const resultText = `強さ: ${strength}, 敏捷性: ${agility}, 知性: ${intelligence}`;
+    document.getElementById("character-stats").textContent = resultText;
+
+    // キャラクター画像表示
+    document.getElementById("character-image").src = "https://via.placeholder.com/150";
+
+    // 戻るボタンの処理
+    function goBack() {
+      window.history.go(-2); // 2つ前のページに戻る
+    }
+  </script>
+</body>
+</html>

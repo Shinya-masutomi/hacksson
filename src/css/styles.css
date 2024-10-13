@@ -1,0 +1,117 @@
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-color: #ffebee; /* 柔らかいピンク */
+  color: #4a148c; /* 濃い紫 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #f8bbd0; /* 明るいピンク */
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #d81b60; /* 鮮やかなピンク */
+}
+
+.parameter {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 10px;
+  background: #d81b60; /* 鮮やかなピンク */
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.value {
+  font-size: 20px;
+  margin-top: 5px;
+  color: #e91e63; /* 明るいピンク */
+}
+
+.submit-btn {
+  background-color: #7b1fa2; /* 濃い紫 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 18px;
+}
+
+.submit-btn:hover {
+  background-color: #6a1b9a; /* より濃い紫 */
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ffebee; /* 柔らかいピンク */
+  color: #4a148c; /* 濃い紫 */
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #e91e63; /* 明るいピンク */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.character-image {
+  width: 150px;
+  height: 150px;
+  margin: 20px 0;
+}
+
+.back-btn {
+  background-color: #f06292; /* 明るいピンク */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 18px;
+}
+
+.back-btn:hover {
+  background-color: #ec407a; /* より濃いピンク */
+}

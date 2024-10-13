@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キャラクターパラメータ設定</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>キャラクターパラメータ設定</h1>
+    <form id="character-form">
+      <div class="parameter">
+        <label for="strength">強さ:</label>
+        <input type="range" id="strength" name="strength" min="0" max="100" value="50" class="slider">
+        <span class="value" id="strength-value">50</span>
+      </div>
+
+      <div class="parameter">
+        <label for="agility">敏捷性:</label>
+        <input type="range" id="agility" name="agility" min="0" max="100" value="50" class="slider">
+        <span class="value" id="agility-value">50</span>
+      </div>
+
+      <div class="parameter">
+        <label for="intelligence">知性:</label>
+        <input type="range" id="intelligence" name="intelligence" min="0" max="100" value="50" class="slider">
+        <span class="value" id="intelligence-value">50</span>
+      </div>
+
+      <button type="submit" class="submit-btn">設定完了</button>
+    </form>
+  </div>
+
+  <script src="../javascript/script.js"></script>
+</body>
+</html>
