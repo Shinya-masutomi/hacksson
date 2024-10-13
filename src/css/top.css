@@ -49,7 +49,7 @@ body {
   transition: background-color 0.3s, transform 0.3s; /* トランジション効果 */
   cursor: pointer; /* カーソルをポインターに */
   z-index: 2; /* オーバーレイの上に配置 */
-  display: block;
+  /* display: block; */
   margin: -30px auto 0;
 }
 
