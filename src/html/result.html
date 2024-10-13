@@ -5,6 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>結果</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      /* スピナーのスタイル */
+      .spinner {
+          border: 4px solid rgba(0, 0, 0, 0.1);
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border-top-color: #ec407a;
+          animation: spin 1s infinite linear;
+          display: block;
+          margin: 20px auto;
+      }
+
+      /* スピンアニメーション */
+      @keyframes spin {
+          to {
+              transform: rotate(360deg);
+          }
+      }
+
+      /* imgがロードされるまで非表示にする */
+      img {
+          display: none;
+          max-width: 100%; /* 必要に応じて調整 */
+      }
+
+      /* ロード中の状態でスピナーを表示 */
+      .image-container {
+          position: relative;
+      }
+
+      .image-container img {
+          display: none; /* ロードされるまで非表示 */
+      }
+
+      .image-container.loaded img {
+          display: block; /* ロードされたら表示 */
+      }
+
+      .image-container.loaded .spinner {
+          display: none; /* ロード後にスピナー非表示 */
+      }
+  </style>
   </head>
   <body>
     <div class="container">
@@ -12,12 +55,15 @@
       <p id="character-stats" style="display: none;"></p>
       <canvas id="myChart"></canvas>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>      <img
-        id="character-image"
-        src="https://via.placeholder.com/150"
-        alt="キャラクター画像"
-        class="character-image"
-      />
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+      <div class="image-container">
+        <div class="spinner"></div>
+        <img
+          id="character-image"
+          alt="キャラクター画像"
+          class="character-image"
+        />
+      </div>
       <a href="story.html"><button class="back-btn">物語へ</button></a>
     </div>
 
@@ -80,7 +126,15 @@
       const resultText = `Please generate a cute character based on the following parameters: Attack Power: ${strength}, Agility: ${agility}, Intelligence: ${intelligence}, Age: ${age}, Size: ${size}, Softness: ${softness}. However, ensure that neither the numerical values of these parameters nor any text are displayed in the character. Only the character itself should be visible.`;
       document.getElementById("character-stats").textContent = resultText;
 
-      // resultText を使ってPOSTリクエストを送信
+      var img = document.querySelector('.image-container img');
+      var container = document.querySelector('.image-container');
+
+      // 画像がロードされたときのイベント
+      img.onload = function() {
+          container.classList.add('loaded');  // loadedクラスを追加してスタイル変更
+      };
+
+    // resultText を使ってPOSTリクエストを送信
       $.ajax({
         type: "POST",
         url: "https://ishinomakihack2024.azurewebsites.net/api/CreateImage", // 指定されたターゲットURL

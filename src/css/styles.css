@@ -175,3 +175,10 @@ label {
   width: 250px;
   height: 250px;
 }
+
+/* スピンアニメーション */
+@keyframes spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
