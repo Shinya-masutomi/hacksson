@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>結果</title>
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
       <h1>結果</h1>
-      <p id="character-stats-strength"></p>
-      <p id="character-stats-agility"></p>
-      <p id="character-stats-intelligence"></p>
-      <p id="character-stats-age"></p>
-      <p id="character-stats-size"></p>
-      <p id="character-stats-softness"></p>
-      <img
+      <p id="character-stats" style="display: none;"></p>
+      <canvas id="myChart"></canvas>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>      <img
         id="character-image"
         src="https://via.placeholder.com/150"
         alt="キャラクター画像"
@@ -39,24 +33,52 @@
       const size = urlParams.get("size");
       const softness = urlParams.get("softness");
 
+      //チャートを生成
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ["攻撃力", "俊敏性", "知性", "年齢", "大きさ", "柔らかさ"],
+          datasets: [{
+            label: "パラメータ",
+            data: [strength, agility, intelligence, age, size, softness],
+            backgroundColor: "rgba(236, 64, 122, 0.5)",  //グラフ背景色
+            borderColor: "rgba(236, 64, 122, 1)",        //グラフボーダー色
+          }]
+        },
+        options: {
+          maintainAspectRatio: true,
+          scales: {
+            r: {
+              max: 100,        // グラフの最大値
+              min: 0,        // グラフの最小値
+              ticks: {
+                stepSize: 20,  // 目盛間隔
+                display: false  // メモリのラベルを非表示にする
+              }
+            }
+          },
+          plugins: {
+              legend: {
+                display: false  // 凡例を非表示にする
+              },
+              datalabels: {
+              color: 'black',            // ラベルの色
+              anchor: 'end',             // ラベルの配置
+              align: 'start',            // ラベルの配置
+              offset: -20,                // ラベルの配置
+              formatter: function(value) {
+                return value;            // データの値を表示
+              }
+            }
+          }
+        },
+        plugins: [ChartDataLabels]  // プラグインを有効化
+      });
+
       // 結果を表示
-<<<<<<< HEAD
-      const resultIntelligence = `知性: ${intelligence}`;
-      const resultStrength = `攻撃力: ${strength}`; 
-      const resultAge = `年齢: ${age}`; 
-      const resultSize = `大きさ: ${size}`;
-      const resultSoftness = `柔らかさ: ${softness}`;
-      const resultAgility = `敏捷性: ${agility}`;
-      document.getElementById("character-stats-strength").textContent = resultStrength;
-      document.getElementById("character-stats-agility").textContent = resultAgility;
-      document.getElementById("character-stats-intelligence").textContent = resultIntelligence;
-      document.getElementById("character-stats-age").textContent = resultAge;
-      document.getElementById("character-stats-size").textContent = resultSize;
-      document.getElementById("character-stats-softness").textContent = resultSoftness;
-=======
       const resultText = `Please generate a cute character based on the following parameters: Attack Power: ${strength}, Agility: ${agility}, Intelligence: ${intelligence}, Age: ${age}, Size: ${size}, Softness: ${softness}. However, ensure that neither the numerical values of these parameters nor any text are displayed in the character. Only the character itself should be visible.`;
       document.getElementById("character-stats").textContent = resultText;
->>>>>>> d19ca21b2b2cb42af8cb075989ed880251e0454a
 
       // resultText を使ってPOSTリクエストを送信
       $.ajax({
