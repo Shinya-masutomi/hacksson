@@ -43,6 +43,7 @@ body {
 }
 
 .gacha-button {
+  text-decoration-line : none;
   background-color: #ff4c4c; /* ボタンの色 */
   color: white; /* テキストカラー */
   border: none; /* ボーダーなし */
