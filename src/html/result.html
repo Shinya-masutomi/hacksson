@@ -123,7 +123,8 @@
       });
 
       // 結果を表示
-      const resultText = `Please generate a cute character based on the following parameters: Attack Power: ${strength}, Agility: ${agility}, Intelligence: ${intelligence}, Age: ${age}, Size: ${size}, Softness: ${softness}. However, ensure that neither the numerical values of these parameters nor any text are displayed in the character. Only the character itself should be visible.`;
+      const resultText = `次のパラメータに基づいて日本風のかわいいキャラクターを生成してください: 攻撃力: ${strength/2}、敏捷性: ${agility}、知性: ${intelligence}、年齢: ${age/2}、体格: ${size/2} 、柔らかさ: ${softness}。ただし、これらのパラメータの数値や文字を表示しないでください。`;
+      //console.log(resultText);
       document.getElementById("character-stats").textContent = resultText;
 
       var img = document.querySelector('.image-container img');
