@@ -148,11 +148,13 @@ label {
 
 
 .story-btn {
+  font-family: "Zen Maru Gothic", serif;
+  font-weight: 700;
   background-color: #f06292; /* 明るいピンク */
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 18px;
