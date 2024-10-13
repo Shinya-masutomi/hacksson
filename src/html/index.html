@@ -15,7 +15,9 @@
       <h1>キャラクターパラメータ設定</h1>
       <form id="character-form">
         <div class="parameter">
-          <label for="strength">攻撃力:</label>
+          <label for="strength">攻撃力:
+            <span class="value" id="strength-value">50</span>
+          </label>
           <input
             type="range"
             id="strength"
@@ -25,7 +27,6 @@
             value="50"
             class="slider"
           />
-          <span class="value" id="strength-value">50</span>
         </div>
 
         <div class="parameter">
