@@ -32,11 +32,12 @@ body {
  }
  
  h1 {
+
    font-family: "DotGothic16", sans-serif;
    font-weight: 800;
    font-style: normal;
    margin-bottom: 20px;
-   font-size: 25px;
+   font-size: 22px;
    color: #ffb5d0; /* 鮮やかなピンク */
    text-shadow: -1px 0px #ee76a2,0px 1px #ee76a2, 1px 0px #ee76a2, 0px -1px #ee76a2;
  }
@@ -96,6 +97,9 @@ label {
 }
 
 .submit-btn {
+  font-family: "DotGothic16", serif;
+  font-weight: 400;
+  font-style: normal;
   background-color: #9957cb; /* 濃い紫 */
   color: white;
   border: none;
