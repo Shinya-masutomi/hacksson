@@ -21,7 +21,7 @@
         alt="キャラクター画像"
         class="character-image"
       />
-      <button onclick="goBack()" class="back-btn">戻る</button>
+      <a href="story.html"><button class="back-btn">物語へ</button></a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -37,6 +37,7 @@
       const softness = urlParams.get("softness");
 
       // 結果を表示
+<<<<<<< HEAD
       const resultIntelligence = `知性: ${intelligence}`;
       const resultStrength = `攻撃力: ${strength}`; 
       const resultAge = `年齢: ${age}`; 
@@ -49,11 +50,10 @@
       document.getElementById("character-stats-age").textContent = resultAge;
       document.getElementById("character-stats-size").textContent = resultSize;
       document.getElementById("character-stats-softness").textContent = resultSoftness;
-
-      // 戻るボタンの処理
-      function goBack() {
-        window.history.go(-2); // 2つ前のページに戻る
-      }
+=======
+      const resultText = `Please generate a cute character based on the following parameters: Attack Power: ${strength}, Agility: ${agility}, Intelligence: ${intelligence}, Age: ${age}, Size: ${size}, Softness: ${softness}. However, ensure that neither the numerical values of these parameters nor any text are displayed in the character. Only the character itself should be visible.`;
+      document.getElementById("character-stats").textContent = resultText;
+>>>>>>> d19ca21b2b2cb42af8cb075989ed880251e0454a
 
       // resultText を使ってPOSTリクエストを送信
       $.ajax({

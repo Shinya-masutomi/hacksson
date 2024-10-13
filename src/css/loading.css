@@ -13,7 +13,7 @@ body {
      justify-content: center;
      align-items: center;
      height: 100vh;
-     flex-direction: column;
+     /* flex-direction: column; */
      gap: 20px;
    }
 .loadingImg{
@@ -30,6 +30,15 @@ body {
     background-color: #ffebee; /* 柔らかいピンク */
     background: url('../images/roding.gif');
     color: #4a148c; /* 濃い紫 */
+  }
+  
+  .img_left {
+    float: left;
+  }
+
+  .img_right {
+    float: right;
+    margin-top: 115px;
   }
   
   .spinner {

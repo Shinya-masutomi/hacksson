@@ -108,7 +108,44 @@ label {
   background-color: #6a1b9a; /* より濃い紫 */
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: linear-gradient(0deg, #ffd8de, rgb(222, 216, 255));
+  color: #4a148c; /* 濃い紫 */
+}
 
+.img_left {
+  float: left;
+}
+
+.img_right {
+  float: right;
+  margin-top: 115px;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #e91e63; /* 明るいピンク */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.character-image {
+  width: 150px;
+  height: 150px;
+  margin: 20px 0;
+}
 
 .back-btn {
   background-color: #f06292; /* 明るいピンク */
@@ -123,4 +160,8 @@ label {
 
 .back-btn:hover {
   background-color: #ec407a; /* より濃いピンク */
+}
+
+#story {
+  text-align: left;
 }
