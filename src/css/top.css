@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('/images/back.png') no-repeat center center fixed; /* 背景画像を設定 */
+  background-size: cover;
+  position: relative; /* 相対位置を設定 */
+}
+
+.overlay {
+  position: fixed; /* 固定位置を設定 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 幅を100%に */
+  height: 100%; /* 高さを100%に */
+  background-color: rgba(0, 0, 0, 0.13); /* 黒いオーバーレイ */
+  z-index: 1; /* オーバーレイを前面に */
+}
+
+.container {
+  position: relative; /* 相対位置を設定 */
+  text-align: center;
+  padding: 20px;
+  color: white; /* テキストカラー */
+  z-index: 2;
+}
+
+.container img {
+  filter: drop-shadow(5px 5px 5px #aaa);
+}
+
+
+.title {
+  margin: 0;
+}
+
+.gacha-button {
+  background-color: #ff4c4c; /* ボタンの色 */
+  color: white; /* テキストカラー */
+  border: none; /* ボーダーなし */
+  padding: 20px 30px; /* 上下左右のパディング */
+  width: 500px;
+  font-size: 50px; /* フォントサイズ */
+  border-radius: 40px; /* 丸みを帯びた角 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* シャドウ効果 */
+  transition: background-color 0.3s, transform 0.3s; /* トランジション効果 */
+  cursor: pointer; /* カーソルをポインターに */
+  z-index: 2; /* オーバーレイの上に配置 */
+  display: block;
+  margin: -30px auto 0;
+}
+
+.gacha-button:hover {
+  background-color: #ff0000; /* ホバー時の色 */
+}
