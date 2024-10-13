@@ -5,9 +5,8 @@ body {
    font-style: normal;
    /*background-image: linear-gradient(0deg, #ffd8de, rgb(222, 216, 255));
    background-color: #ffebee;  柔らかいピンク */
-   background: url('/images/back.png') no-repeat center center fixed; /* 背景画像を設定 */
+   background: url('../images/back.png') no-repeat center center fixed; /* 背景画像を設定 */
    background-size: cover;
-   background-size: 100% 100%;
    margin: 0;
    padding: 0;
    display: flex;
@@ -161,4 +160,8 @@ label {
 
 .back-btn:hover {
   background-color: #ec407a; /* より濃いピンク */
+}
+
+#story {
+  text-align: left;
 }

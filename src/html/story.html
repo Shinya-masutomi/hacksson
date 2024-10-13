@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>キャラクターパラメータ設定</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>キャラクターパラメータ設定</h1>
+      <p id="story"></p>
+      <!-- IDを持つpタグ -->
+      <a href="top.html"><button>戻る</button></a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      // URLのパラメータからデータを取得
+      const urlParams = new URLSearchParams(window.location.search);
+      const strength = urlParams.get("strength");
+      const agility = urlParams.get("agility");
+      const intelligence = urlParams.get("intelligence");
+      const age = urlParams.get("age");
+      const size = urlParams.get("size");
+      const softness = urlParams.get("softness");
+
+      // 結果を表示
+      const resultText = `攻撃力: ${strength}, 敏捷性: ${agility}, 知性: ${intelligence}, 年齢: ${age}, 大きさ: ${size}, 柔らかさ: ${softness}`;
+
+      // resultText を使ってPOSTリクエストを送信
+      $.ajax({
+        type: "POST",
+        url: "https://ishinomakihack2024.azurewebsites.net/api/Completions", // 指定されたターゲットURL
+        contentType: "application/json",
+        data: JSON.stringify({ message: resultText }), // resultTextの内容を送信
+        dataType: "json",
+      })
+        .done(function (response) {
+          console.log("Success:", response);
+
+          if (response.status) {
+            // messageをJSONとしてパースするために、外側のシングルクォートを取り除く
+            const messageData = JSON.parse(response.message.replace(/'/g, '"')); // シングルクォートをダブルクォートに変換
+
+            if (messageData.stories && messageData.stories.length > 0) {
+              // APIの返答からストーリーを取り出して表示
+              const stories = messageData.stories
+                .map((story) => story.story)
+                .join("<br><br>"); // 各ストーリーを<br><br>で区切る
+              document.getElementById("story").innerHTML = stories; // innerHTMLを使用してHTMLを出力
+            } else {
+              console.error("Error: No stories found in message");
+              document.getElementById("story").textContent =
+                "ストーリーが見つかりませんでした。";
+            }
+          } else {
+            console.error("Error: No valid response status");
+            document.getElementById("story").textContent =
+              "ストーリーが見つかりませんでした。";
+          }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          console.error("Error:", textStatus, errorThrown);
+          document.getElementById("story").textContent =
+            "リクエストに失敗しました。";
+        });
+    </script>
+  </body>
+</html>
