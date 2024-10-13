@@ -86,7 +86,7 @@
       const size = urlParams.get("size");
       const softness = urlParams.get("softness");
 
-      //チャートを生成
+      // チャートを生成
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
         type: "radar",
@@ -96,8 +96,8 @@
             {
               label: "パラメータ",
               data: [strength, agility, intelligence, age, size, softness],
-              backgroundColor: "rgba(236, 64, 122, 0.5)", //グラフ背景色
-              borderColor: "rgba(236, 64, 122, 1)", //グラフボーダー色
+              backgroundColor: "rgba(236, 64, 122, 0.5)", // グラフ背景色
+              borderColor: "rgba(236, 64, 122, 1)", // グラフボーダー色
             },
           ],
         },
@@ -110,6 +110,12 @@
               ticks: {
                 stepSize: 20, // 目盛間隔
                 display: false, // メモリのラベルを非表示にする
+              },
+              pointLabels: {
+                font: {
+                  size: 14, // ラベルの文字サイズを指定
+                  weight: "bold", // ラベルの文字の太さ
+                },
               },
             },
           },
@@ -124,6 +130,10 @@
               offset: -20, // ラベルの配置
               formatter: function (value) {
                 return value; // データの値を表示
+              },
+              font: {
+                weight: "bold", // 文字の太さを変更
+                size: 14, // 文字サイズを指定
               },
             },
           },
