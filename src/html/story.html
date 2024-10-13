@@ -17,7 +17,7 @@
     />
   </head>
   <body>
-    <div class="container">
+    <div class="container -ex2">
       <h1>超 可愛い予言</h1>
       <p id="story"></p>
       <!-- IDを持つpタグ -->
@@ -29,15 +29,15 @@
     <script>
       // URLのパラメータからデータを取得
       const urlParams = new URLSearchParams(window.location.search);
-      const strength = urlParams.get("strength");
+      const luck = urlParams.get("luck"); // 攻撃力を運に変更
       const agility = urlParams.get("agility");
       const intelligence = urlParams.get("intelligence");
-      const age = urlParams.get("age");
+      const affection = urlParams.get("affection"); // 年齢を愛情に変更
       const size = urlParams.get("size");
       const softness = urlParams.get("softness");
 
       // 結果を表示
-      const resultText = `Write a short story with chapters under 60 characters each, featuring a cute character with the following parameters: Attack Power: ${strength}, Agility: ${agility}, Intelligence: ${intelligence}, Age: ${age}, Size: ${size}, Softness: ${softness}. You are very emotional poet. The story should be aimed at men in their 30s and have an interesting, unique, and unpredictable plot.The story should have a bad ending.`;
+      const resultText = `あなたは感情豊かな詩人です。60文字以内の章で構成された短編小説を書いてください。以下のパラメータを持つかわいいキャラクターを特徴としています: 運: ${luck}, 敏捷性: ${agility}, 知性: ${intelligence}, 愛情: ${affection}, 大きさ: ${size}, 柔らかさ: ${softness}。物語は30代の男性をターゲットにしており、面白くてユニークで予測不可能なプロットであるべきです。結末は悲劇的にしてください。`;
 
       // resultText を使ってPOSTリクエストを送信
       $.ajax({

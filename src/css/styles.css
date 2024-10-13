@@ -29,6 +29,11 @@ body {
 
  .-ex {
   height: 85vh;
+  width: 80vw;
+ }
+
+ .-ex2 {
+  width: 800px;
  }
  
  h1 {
@@ -39,23 +44,29 @@ body {
    font-size: 28px;
    color: #ffb5d0; /* 鮮やかなピンク */
    text-shadow: -1px 0px #ee76a2,0px 1px #ee76a2, 1px 0px #ee76a2, 0px -1px #ee76a2;
+   letter-spacing: 3px;
+ }
+
+ .end {
+  font-size: 55px;
+  margin-bottom: 40px;
  }
 
 .parameter {
-  margin-bottom: 20px;
+  margin-bottom: 29px;
   font-size: 22px;
 }
 
 label {
   display: block;
   margin-bottom: 5px;
-  font-size: 16px;
+  font-size: 23px;
 }
 
 .slider {
   -webkit-appearance: none;
-  width: 300px;
-  height: 12px;
+  width: 350px;
+  height: 14px;
   border-radius: 10px;
   background: #c49fff;
   outline: none;
@@ -109,7 +120,7 @@ label {
   transition: background-color 0.3s;
   font-size: 25px;
   display: inline-block;
-  margin: 4em auto 0;
+  margin: 2.5em auto 0;
 }
 
 .submit-btn:hover {
@@ -155,11 +166,11 @@ label {
   background-color: #f06292; /* 明るいピンク */
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 20px 80px;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-size: 18px;
+  font-size: 27px;
 }
 
 .story-btn:hover {
@@ -168,20 +179,18 @@ label {
 
 #story {
   text-align: center;
-  font-size: 20px;
+  font-size: 25px;
   margin: 6em auto;
 }
 
 #character-image{
-  max-width: 400px;
-  max-height: 400px;
-  margin: 0 auto 3em;
+  max-width: 600px;
+  max-height: 600px;
 }
 
 #myChart {
-  width: 300px!important;
-  height: 300px!important;
-  margin: 1em auto;
+  max-width: 600px!important;
+  max-height: 600px!important;
 }
 
 /* スピンアニメーション */
@@ -193,4 +202,11 @@ label {
 
 #character-form {
   margin-top: 3em;
+}
+
+.yoko {
+  display: flex;
+  justify-content: center;
+  gap: 10em;
+  margin-bottom: 5em;
 }

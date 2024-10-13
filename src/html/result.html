@@ -51,25 +51,27 @@
   </head>
   <body>
     <div class="container -ex">
-      <h1>結果</h1>
+      <h1 class="end">結果発表</h1>
 
       <p id="character-stats" style="display: none"></p>
-      <canvas id="myChart"></canvas>
-      <script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"
-      ></script>
-      <script
-        type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"
-      ></script>
-      <div class="image-container">
-        <div class="spinner"></div>
-        <img
-          id="character-image"
-          alt="キャラクター画像"
-          class="character-image"
-        />
+      <div class="yoko">
+        <canvas id="myChart"></canvas>
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"
+        ></script>
+        <div class="image-container">
+          <div class="spinner"></div>
+          <img
+            id="character-image"
+            alt="キャラクター画像"
+            class="character-image"
+          />
+        </div>
       </div>
       <a href="story.html"><button class="story-btn">物語へ</button></a>
     </div>
@@ -79,10 +81,10 @@
     <script>
       // URLのパラメータからデータを取得
       const urlParams = new URLSearchParams(window.location.search);
-      const strength = urlParams.get("strength");
+      const luck = urlParams.get("luck"); // 攻撃力を運に変更
       const agility = urlParams.get("agility");
       const intelligence = urlParams.get("intelligence");
-      const age = urlParams.get("age");
+      const affection = urlParams.get("affection"); // 年齢を愛情に変更
       const size = urlParams.get("size");
       const softness = urlParams.get("softness");
 
@@ -91,13 +93,14 @@
       var myChart = new Chart(ctx, {
         type: "radar",
         data: {
-          labels: ["攻撃力", "俊敏性", "知性", "年齢", "大きさ", "柔らかさ"],
+          labels: ["運", "敏捷性", "知性", "愛情", "大きさ", "柔らかさ"], // ラベルを更新
           datasets: [
             {
               label: "パラメータ",
-              data: [strength, agility, intelligence, age, size, softness],
+              data: [luck, agility, intelligence, affection, size, softness], // データを更新
               backgroundColor: "rgba(236, 64, 122, 0.5)", // グラフ背景色
               borderColor: "rgba(236, 64, 122, 1)", // グラフボーダー色
+              borderWidth: 3, // 線の太さを指定
             },
           ],
         },
@@ -113,7 +116,7 @@
               },
               pointLabels: {
                 font: {
-                  size: 14, // ラベルの文字サイズを指定
+                  size: 18, // ラベルの文字サイズを指定
                   weight: "bold", // ラベルの文字の太さ
                 },
               },
@@ -133,7 +136,7 @@
               },
               font: {
                 weight: "bold", // 文字の太さを変更
-                size: 14, // 文字サイズを指定
+                size: 18, // 文字サイズを指定
               },
             },
           },
@@ -142,11 +145,7 @@
       });
 
       // 結果を表示
-      const resultText = `次のパラメータに基づいて日本風のかわいいキャラクターを生成してください: 攻撃力: ${
-        strength / 2
-      }、敏捷性: ${agility}、知性: ${intelligence}、年齢: ${age / 2}、体格: ${
-        size / 2
-      } 、柔らかさ: ${softness}。ただし、これらのパラメータの数値や文字を表示しないでください。`;
+      const resultText = `次のパラメータに基づいて日本風のかわいいキャラクターを生成してください: 運: ${luck}、敏捷性: ${agility}、知性: ${intelligence}、愛情: ${affection}、体格: ${size}、柔らかさ: ${softness}。ただし、これらのパラメータの数値や文字を表示しないでください。`; // 結果表示を更新
       //console.log(resultText);
       document.getElementById("character-stats").textContent = resultText;
 

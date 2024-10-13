@@ -31,13 +31,13 @@ document
     e.preventDefault();
 
     // フォームの入力値を取得
-    const strength = document.getElementById("strength").value;
+    const luck = document.getElementById("luck").value; // 攻撃力を運に変更
     const agility = document.getElementById("agility").value;
     const intelligence = document.getElementById("intelligence").value;
-    const age = document.getElementById("age").value;
+    const affection = document.getElementById("affection").value; // 年齢を愛情に変更
     const size = document.getElementById("size").value;
     const softness = document.getElementById("softness").value;
 
     // ローディングページに遷移
-    window.location.href = `loading.html?strength=${strength}&agility=${agility}&intelligence=${intelligence}&age=${age}&size=${size}&softness=${softness}`;
+    window.location.href = `loading.html?luck=${luck}&agility=${agility}&intelligence=${intelligence}&affection=${affection}&size=${size}&softness=${softness}`;
   });

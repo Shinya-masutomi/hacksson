@@ -5,36 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ローディング</title>
     <link rel="stylesheet" href="../css/loading.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="img_left">
-      <img src="..\images\img_01_reimu.gif">
+      <img src="../images/img_01_reimu.gif" alt="Reimu" />
     </div>
     <div class="loading">
       <div class="spinner"></div>
       <p>処理中...少々お待ちください。</p>
-      <img src="../images/loading.gif" class="loadingImg"/>
+      <img src="../images/loading.gif" class="loadingImg" alt="Loading" />
     </div>
     <div class="img_right">
-      <img src="..\images\img_02_marisa.gif">
+      <img src="../images/img_02_marisa.gif" alt="Marisa" />
     </div>
 
     <script>
       // URLのパラメータを取得
       const urlParams = new URLSearchParams(window.location.search);
-      const strength = urlParams.get("strength");
+      const luck = urlParams.get("luck"); // 攻撃力を運に変更
       const agility = urlParams.get("agility");
       const intelligence = urlParams.get("intelligence");
-      const age = urlParams.get("age");
+      const affection = urlParams.get("affection"); // 年齢を愛情に変更
       const size = urlParams.get("size");
       const softness = urlParams.get("softness");
 
       // 2秒後に結果ページに遷移
       setTimeout(() => {
-        window.location.href = `result.html?strength=${strength}&agility=${agility}&intelligence=${intelligence}&age=${age}&size=${size}&softness=${softness}`;
+        window.location.href = `result.html?luck=${luck}&agility=${agility}&intelligence=${intelligence}&affection=${affection}&size=${size}&softness=${softness}`; // URLパラメータ名を変更
       }, 2000);
     </script>
   </body>
