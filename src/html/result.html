@@ -71,7 +71,7 @@
           class="character-image"
         />
       </div>
-      <a href="story.html"><button class="back-btn">物語へ</button></a>
+      <a href="story.html"><button class="story-btn">物語へ</button></a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -132,7 +132,11 @@
       });
 
       // 結果を表示
-      const resultText = `次のパラメータに基づいて日本風のかわいいキャラクターを生成してください: 攻撃力: ${strength/2}、敏捷性: ${agility}、知性: ${intelligence}、年齢: ${age/2}、体格: ${size/2} 、柔らかさ: ${softness}。ただし、これらのパラメータの数値や文字を表示しないでください。`;
+      const resultText = `次のパラメータに基づいて日本風のかわいいキャラクターを生成してください: 攻撃力: ${
+        strength / 2
+      }、敏捷性: ${agility}、知性: ${intelligence}、年齢: ${age / 2}、体格: ${
+        size / 2
+      } 、柔らかさ: ${softness}。ただし、これらのパラメータの数値や文字を表示しないでください。`;
       //console.log(resultText);
       document.getElementById("character-stats").textContent = resultText;
 

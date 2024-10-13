@@ -39,6 +39,7 @@ body {
 
 .parameter {
   margin-bottom: 20px;
+  font-size: 22px;
 }
 
 label {
@@ -98,11 +99,11 @@ label {
   background-color: #9957cb; /* 濃い紫 */
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 20px 40px;
   border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-size: 18px;
+  font-size: 25px;
   display: inline-block;
   margin: 2em auto;
 }
@@ -144,11 +145,7 @@ label {
   100% { transform: rotate(360deg); }
 }
 
-.character-image {
-  width: 300px;
-  height: 300px;
-  margin: 20px 0;
-}
+
 
 .story-btn {
   background-color: #f06292; /* 明るいピンク */
@@ -167,16 +164,21 @@ label {
 
 #story {
   text-align: center;
+  font-size: 20px;
+  margin: 6em auto;
 }
 
 #character-image{
-  max-width: 256px;
-  max-height: 256px;
+  max-width: 400px;
+  max-height: 400px;
+  display: block;
+  margin: 0 auto 3em;
 }
 
 #myChart {
-  width: 250px;
-  height: 250px;
+  width: 250px!important;
+  height: 250px!important;
+  margin: 1em auto;
 }
 
 /* スピンアニメーション */
