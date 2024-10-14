@@ -32,9 +32,17 @@
       const affection = urlParams.get("affection"); // 年齢を愛情に変更
       const size = urlParams.get("size");
       const softness = urlParams.get("softness");
+      let name = sessionStorage.getItem("name");
+      let message = sessionStorage.getItem("message");
 
       // 結果を表示
-      const resultText = `あなたは感情豊かな詩人です。60文字以内の章で構成された短編小説を書いてください。以下のパラメータを持つかわいいキャラクターを特徴としています: 運: ${luck}, 敏捷性: ${agility}, 知性: ${intelligence}, 愛情: ${affection}, 大きさ: ${size}, 柔らかさ: ${softness}。物語は30代の男性をターゲットにしており、面白くてユニークで予測不可能なプロットであるべきです。結末は悲劇的にしてください。`;
+      const resultText = `あなたは感情豊かな詩人です。60文字以内の章で構成された短編小説を書いてください。以下の情報参考に生成してください\n
+				#キャラクターの名前\n
+				${name}\n
+				#キャラクターの特徴\n
+				${message}\n
+				物語は30代の男性をターゲットにしており、面白くてユニークで予測不可能なプロットであるべきです。結末は悲劇的にしてください。\n
+				結果はJsonで返却してください。no repeat, no remarks, result only in Japanese.`;
 
       // resultText を使ってPOSTリクエストを送信
       $.ajax({
