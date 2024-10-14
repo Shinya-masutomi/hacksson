@@ -27,8 +27,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #ffebee; /* 柔らかいピンク */
-    background: url('../images/loading.gif');
+    background-color: transparent /* #ffebee; 柔らかいピンク */
     color: #4a148c; /* 濃い紫 */
   }
   
