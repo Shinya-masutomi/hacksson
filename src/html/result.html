@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>結果</title>
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
     <style>
       /* スピナーのスタイル */
       .spinner {
@@ -67,10 +70,7 @@
           type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"
         ></script>
-        <div>
-          <span id="charactorname">
-          </span>
-        </div>
+
         <div class="image-container">
           <div class="spinner"></div>
           <img
@@ -78,6 +78,9 @@
             alt="キャラクター画像"
             class="character-image"
           />
+          <div class="plate" id="cork">
+            <span id="charactorname"></span>
+          </div>
         </div>
       </div>
       <a href="story.html"><button class="story-btn">物語へ</button></a>
@@ -169,15 +172,12 @@
       // 画像と名前の取得
       let name = sessionStorage.getItem("name");
       let base64Image = sessionStorage.getItem("base64Image");
-      
+
       $("#charactorname").text(name);
-      
+
       // imgタグのsrc属性に画像データをセット
-         $("#character-image").attr(
-           "src",
-           `data:image/png;base64,${base64Image}`
-         );
-      
+      $("#character-image").attr("src", `data:image/png;base64,${base64Image}`);
+
       /* resultText を使ってPOSTリクエストを送信
       $.ajax({
         type: "POST",
@@ -205,7 +205,6 @@
         .fail(function (jqXHR, textStatus, errorThrown) {
           console.error("Error:", textStatus, errorThrown);
         }); */
-        
     </script>
   </body>
 </html>
