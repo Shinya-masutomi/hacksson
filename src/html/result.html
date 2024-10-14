@@ -67,6 +67,10 @@
           type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"
         ></script>
+        <div>
+          <span id="charactorname">
+          </span>
+        </div>
         <div class="image-container">
           <div class="spinner"></div>
           <img
@@ -150,10 +154,10 @@
 
       // 結果を表示
       //const resultText = `次のパラメータに基づいて日本風のかわいいキャラクターを生成してください: 運: ${luck}、敏捷性: ${agility}、知性: ${intelligence}、愛情: ${affection}、体格: ${size}、柔らかさ: ${softness}。ただし、これらのパラメータの数値や文字を表示しないでください。`; // 結果表示を更新
-      const resultText = "次のメッセージのような日本風のかわいく、ゆらキャラのようなキャラクターを生成して下さい。\r\n・"
-         + message;
+      //const resultText = "次のメッセージのような日本風のかわいく、ゆらキャラのようなキャラクターを生成して下さい。\r\n・"
+      //   + message;
       //console.log(resultText);
-      document.getElementById("character-stats").textContent = resultText;
+      //document.getElementById("character-stats").textContent = resultText;
 
       var img = document.querySelector(".image-container img");
       var container = document.querySelector(".image-container");
@@ -162,8 +166,19 @@
       img.onload = function () {
         container.classList.add("loaded"); // loadedクラスを追加してスタイル変更
       };
-
-      // resultText を使ってPOSTリクエストを送信
+      // 画像と名前の取得
+      let name = sessionStorage.getItem("name");
+      let base64Image = sessionStorage.getItem("base64Image");
+      
+      $("#charactorname").text(name);
+      
+      // imgタグのsrc属性に画像データをセット
+         $("#character-image").attr(
+           "src",
+           `data:image/png;base64,${base64Image}`
+         );
+      
+      /* resultText を使ってPOSTリクエストを送信
       $.ajax({
         type: "POST",
         url: "https://ishinomakihack2024.azurewebsites.net/api/CreateImage", // 指定されたターゲットURL
@@ -189,7 +204,8 @@
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
           console.error("Error:", textStatus, errorThrown);
-        });
+        }); */
+        
     </script>
   </body>
 </html>
