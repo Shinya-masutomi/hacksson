@@ -22,11 +22,35 @@
           class="title"
         />
         <div class="buttonContent">
-          <a href="index.html" class="gacha-button">ガチャを回す！</a>
-          <a href="stroyGenerate.html" class="gacha-button">ストーリー生成</a>
+          <a class="gacha-button" onclick="playSoundAndRedirect('index.html')">ガチャを回す！</a>
+          <a class="gacha-button" onclick="playSoundAndRedirect('stroyGenerate.html')">ストーリー生成</a>
         </div>
         <!-- ボタンをリンクに変更 -->
       </div>
     </div>
+    <!-- 音追加 -->
+    <audio id="clickSound">
+      <source src="../css/pickup_coin_free-97175.mp3" type="audio/mpeg" />
+      <source src="../css/pickup_coin_free-97175.ogg" type="audio/ogg" />
+      Your browser does not support the audio element.
+    </audio> 
+
+    <script>
+      // ボタンクリック時、サウンド再生後にURL移動
+      function playSoundAndRedirect(url) {
+        const audio = document.getElementById('clickSound');
+        audio.volume = 1.0; // 音量
+        audio.play().then(() => {
+          // 再生後、画面遷移
+          audio.onended = () => {
+            window.location.href = url;
+          };
+        }).catch(error => {
+          console.log("再生に失敗しました:", error);
+          // エラー発生時にすぐ遷移
+          window.location.href = url;
+        });
+      }
+    </script>
   </body>
 </html>
