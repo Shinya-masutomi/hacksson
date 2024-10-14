@@ -28,7 +28,7 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #ffebee; /* 柔らかいピンク */
-    background: url('../images/roding.gif');
+    background: url('../images/loading.gif');
     color: #4a148c; /* 濃い紫 */
   }
   

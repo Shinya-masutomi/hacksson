@@ -10,28 +10,32 @@ const resultText = window.location.search.substring(1).replace(/&/g, ',');
 
 $.ajax({
     type: "POST",
-    url: "https://ishinomakihack2024.azurewebsites.net/api/CreateCharctorText", // 指定されたターゲットURL
+    url: "https://ishinomakihack2024.azurewebsites.net/api/CreateImage", // 指定されたターゲットURL
     contentType: "application/json",
-    data: JSON.stringify({ message: resultText }), // resultTextの内容を送信
+    data: JSON.stringify({ message:`luck=${luck},agility=${agility},intelligence=${intelligence},affection=${affection},size=${size},softness=${softness}`}), // resultTextの内容を送信
+    //luck=${luck},agility=${agility},intelligence=${intelligence},affection=${affection},size=${size},softness=${softness}
     dataType: "json",
   })
     .done(function (response) {
       console.log("Success:", response);
 
       if (response.status) {
-        // 返ってきたBase64エンコードされた画像データを取得
-        var message = response.message;
+        //ローカルストレージにJsonに保存
+        sessionStorage.setItem("base64Image", response.base64Image);
+        sessionStorage.setItem("name", response.name);
 
         // 2秒後に結果ページに遷移
         setTimeout(() => {
             window.location.href = `result.html?luck=${luck}&agility=${agility}&intelligence=${intelligence}&affection=${affection}&`
-                + `size=${size}&softness=${softness}&message=${message}`;
+                + `size=${size}&softness=${softness}`;//messageを削除
         }, 2000);
       } else {
         console.error("Error: No image data found");
+        alert("画像生成に失敗しました。リロードしてください。");
       }
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       console.error("Error:", textStatus, errorThrown);
+      alert("画像生成に失敗しました。リロードしてください。");
     });
 
